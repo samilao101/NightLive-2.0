@@ -44,11 +44,19 @@ struct ClubDetailView: View {
                 
                 if vm.chatUser != nil {
                     Button {
-                        vm.checkInCurrentClub(club: club)
+                            
+                        if club.id == vm.currentClub?.id  {
+                            vm.checkOutCurrentClub()
+                        } else {
+                            vm.checkInCurrentClub(club: club)
+
+                        }
+                        
+                        
                     } label: {
-                        Text(isCheckedIn ? "Check Out" : "Check In")
+                        Text(club.id == vm.currentClub?.id ? "Check Out" : "Check In")
                             .padding()
-                            .background(Color.yellow)
+                            .background(club.id == vm.currentClub?.id ? Color.yellow: Color.green)
                             .cornerRadius(12)
                             .foregroundColor(.black)
                     }
@@ -83,6 +91,8 @@ struct ClubDetailView: View {
             }
         
         }
+        .alert(item: $vm.alertItem, content: { $0.alert })
+
         .onAppear{
             if vm.currentClub != nil {
                 if vm.currentClub?.id == club.id {
@@ -91,6 +101,7 @@ struct ClubDetailView: View {
                     isCheckedIn = false
                 }
             }
+            
         }
         .navigationBarHidden(true)
     }

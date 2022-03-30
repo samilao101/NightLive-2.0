@@ -14,6 +14,8 @@ class ProfileViewModel: ObservableObject {
     @Published var errorMessage = ""
     @Published var chatUser: ChatUser?
     @Published var currentClub: ClubModel?
+    @Published var alertItem: AlertItem?
+    
 
     init() {
         
@@ -54,6 +56,8 @@ class ProfileViewModel: ObservableObject {
             return
         }
         
+        
+        
         FirebaseManager.shared.firestore.collection("users").document(uid).collection(FirebaseConstants.checkedIn).document(FirebaseConstants.checkedInClub)
             .getDocument { snapshot, error in
                 if let error = error {
@@ -61,8 +65,12 @@ class ProfileViewModel: ObservableObject {
                     return
                 }
                 
-                self.currentClub = try? snapshot?.data(as: ClubModel.self)
-                FirebaseManager.shared.currentUser = self.chatUser
+                guard let data = snapshot?.data() else { return }
+                
+                self.currentClub = ClubModel(id: data["id"] as? String ?? "", data: data, image: nil)
+                
+                
+               
             }
         
     }
@@ -70,43 +78,61 @@ class ProfileViewModel: ObservableObject {
     func handleSignOut() {
         isUserCurrentlyLoggedOut.toggle()
         try? FirebaseManager.shared.auth.signOut()
+        currentClub = nil
     }
     
     func checkInCurrentClub(club: ClubModel) {
       
+       
         guard let uid = chatUser?.uid else {return}
        
-      
+        if currentClub != nil {
+            alertItem = AlertContext.checkedOutOfOtherClub
+            self.checkOutCurrentClub()
+        }
+
         FirebaseManager.shared.firestore.collection(FirebaseConstants.locations).document(club.id).collection(FirebaseConstants.checkedInUsers)
             .document(uid).setData(chatUser!.asDictionary) { err in
-              
+                print(3)
+
                 if let err = err {
                     print(err)
+                   
+
                     return
+
                 }
               
+
                 print("Success")
                 self.currentClub = club
             }
         
         FirebaseManager.shared.firestore.collection(FirebaseConstants.users).document(chatUser!.uid).collection(FirebaseConstants.checkedIn)
             .document(FirebaseConstants.checkedInClub).setData(club.asDictionary) { err in
-              
+                print(5)
+
                 if let err = err {
                     print(err)
+                  
+
                     return
                 }
               
-             
+            
             }
         
         
         
     }
     
-    func checkOutCurrentClub(clubUID: String) {
+    func checkOutCurrentClub() {
         
+        FirebaseManager.shared.firestore.collection(FirebaseConstants.locations).document(currentClub!.id).collection(FirebaseConstants.checkedInUsers).document(chatUser!.uid).delete()
         
+        FirebaseManager.shared.firestore.collection(FirebaseConstants.users).document(chatUser!.uid).collection(FirebaseConstants.checkedIn).document(FirebaseConstants.checkedInClub).delete()
+        
+        self.currentClub = nil
     }
     
     

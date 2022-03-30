@@ -8,6 +8,15 @@
 import Foundation
 import UIKit
 
+struct ClubDataModel: Codable {
+   
+        let id : String
+        let name: String
+        let address: String
+        let phone: String
+        let website: String
+}
+
 struct ClubModel: Identifiable {
     
     let id : String
@@ -29,10 +38,11 @@ struct ClubModel: Identifiable {
     
     var asDictionary : [String:Any] {
         let mirror = Mirror(reflecting: self)
-        let dict = Dictionary(uniqueKeysWithValues: mirror.children.lazy.map({ (label:String?, value:Any) -> (String, Any)? in
+        var dict = Dictionary(uniqueKeysWithValues: mirror.children.lazy.map({ (label:String?, value:Any) -> (String, Any)? in
           guard let label = label else { return nil }
           return (label, value)
         }).compactMap { $0 })
+        dict.removeValue(forKey: "image")
         return dict
       }
     

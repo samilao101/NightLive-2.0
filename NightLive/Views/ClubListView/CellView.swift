@@ -16,7 +16,7 @@ struct CellView: View {
             Image(uiImage: (club.image ?? UIImage(systemName: "building"))!)
                 .resizable()
                 .scaledToFill()
-                .frame(width: 80, height: 80)
+                .frame(width: 60, height: 60)
                 .clipShape(Circle())
                 .padding(.vertical, 8)
             VStack(alignment: .leading) {
@@ -25,13 +25,16 @@ struct CellView: View {
                     .fontWeight(.semibold)
                     .lineLimit(1)
                     .minimumScaleFactor(0.75)
+       
                 HStack{
                     ForEach(1..<5) { _ in
-                        ClubAvatarView(image: UIImage(systemName: "person")!, size: 30)
+                        ClubAvatarView(image: UIImage(systemName: "person")!, size: 20)
                     }
                 }
             }
+            
         }
+        
         
     }
 }
