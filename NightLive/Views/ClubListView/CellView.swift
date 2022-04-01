@@ -10,26 +10,33 @@ import SwiftUI
 struct CellView: View {
     let club: ClubModel
     
+    @StateObject var vm : CheckedInViewModel
+
+    init(club: ClubModel) {
+        self.club = club
+        _vm = StateObject.init(wrappedValue: CheckedInViewModel(club: club))
+    }
+    
     var body: some View {
         
         HStack{
             Image(uiImage: (club.image ?? UIImage(systemName: "building"))!)
                 .resizable()
                 .scaledToFill()
-                .frame(width: 60, height: 60)
+                .frame(width: 80, height: 80)
                 .clipShape(Circle())
                 .padding(.vertical, 8)
             VStack(alignment: .leading) {
                 Text(club.name)
-                    .font(.headline)
+                    .font(.system(size: 24))
                     .fontWeight(.semibold)
                     .lineLimit(1)
-                    .minimumScaleFactor(0.75)
-       
+                ScrollView{
                 HStack{
-                    ForEach(1..<5) { _ in
-                        ClubAvatarView(image: UIImage(systemName: "person")!, size: 20)
-                    }
+                    ForEach(vm.usersCheckedIn) { user in
+                        UserAvatarView(user: user, size: 30, withName: false)
+                      }
+                }.padding(3)
                 }
             }
             

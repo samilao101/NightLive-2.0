@@ -42,6 +42,23 @@ class ListViewModel: ObservableObject {
                         }
                     }
                     
+                    
+                }
+                
+                if change.type == .modified {
+                  
+                    let data = change.document.data()
+                    let id = change.document.documentID
+                    let number = data[FirebaseConstants.checkedIN] as? Int ?? 0
+
+                    if let index = self.listOfClubs.firstIndex(where: { club in
+                        club.id == id
+                        
+                    }) {
+                        self.listOfClubs[index].checkedIN = number
+                        
+                    }
+                    
                 }
                
                 

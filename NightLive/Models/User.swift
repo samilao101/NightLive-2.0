@@ -15,6 +15,15 @@ struct ChatUser: Codable, Identifiable {
     var id: String {uid}
     let uid, email, profileImageUrl: String
     
+    init(data: [String: Any]) {
+        
+        uid = data[FirebaseConstants.uid] as? String ?? ""
+        email = data[FirebaseConstants.email] as? String ?? ""
+        profileImageUrl = data[FirebaseConstants.profileImageUrl] as? String ?? ""
+        
+    }
+    
+    
     var asDictionary : [String:Any] {
         let mirror = Mirror(reflecting: self)
         let dict = Dictionary(uniqueKeysWithValues: mirror.children.lazy.map({ (label:String?, value:Any) -> (String, Any)? in

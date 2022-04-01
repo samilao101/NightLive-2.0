@@ -28,4 +28,6 @@ struct FirebaseConstants {
     static let checkedInUsers = "checkedInUsers"
     static let checkedIn = "checkedIn"
     static let checkedInClub = "checkedInClub"
+    static let profileImages = "profileImages"
+    static let checkedIN = "CheckedIN"
 }

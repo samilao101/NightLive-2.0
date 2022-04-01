@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 
 class ProfileViewModel: ObservableObject {
@@ -123,6 +124,9 @@ class ProfileViewModel: ObservableObject {
             }
         
         
+        FirebaseManager.shared.firestore.collection(FirebaseConstants.locations).document(club.id).updateData([FirebaseConstants.checkedIN : FieldValue.increment(Int64(1))])
+        
+        
         
     }
     
@@ -131,6 +135,8 @@ class ProfileViewModel: ObservableObject {
         FirebaseManager.shared.firestore.collection(FirebaseConstants.locations).document(currentClub!.id).collection(FirebaseConstants.checkedInUsers).document(chatUser!.uid).delete()
         
         FirebaseManager.shared.firestore.collection(FirebaseConstants.users).document(chatUser!.uid).collection(FirebaseConstants.checkedIn).document(FirebaseConstants.checkedInClub).delete()
+        
+        FirebaseManager.shared.firestore.collection(FirebaseConstants.locations).document(currentClub!.id).updateData([FirebaseConstants.checkedIN : FieldValue.increment(Int64(-1))])
         
         self.currentClub = nil
     }

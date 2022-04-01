@@ -25,6 +25,7 @@ struct ClubModel: Identifiable {
     let phone: String
     let website: String
     let image: UIImage?
+    var checkedIN: Int?
     
     init(id: String, data: [String: Any], image: UIImage?) {
        
@@ -33,6 +34,7 @@ struct ClubModel: Identifiable {
         address = data[FirebaseConstants.clubAddress] as? String ?? ""
         website = data[FirebaseConstants.clubWebsite] as? String ?? ""
         phone = data[FirebaseConstants.clubPhone] as? String ?? ""
+        checkedIN = data[FirebaseConstants.checkedIN] as? Int ?? 0
         self.image = image
     }
     

@@ -24,6 +24,10 @@ struct ClubDetailView: View {
                 .resizable()
                 .scaledToFill()
                 .ignoresSafeArea()
+            
+            Color(.init(white: 0, alpha: 0.65))
+                .ignoresSafeArea()
+                
             VStack {
                 HStack {
                     Spacer()
@@ -67,12 +71,12 @@ struct ClubDetailView: View {
                 
                     ZStack {
                             RoundedRectangle(cornerRadius: 25, style: .continuous)
-                                .fill(.white)
+                                .fill(.black)
 
                             VStack {
                                 Text(club.address)
                                     .font(.headline)
-                                    .foregroundColor(.black)
+                                    .foregroundColor(.white)
 
                                 Text(club.website)
                                     .font(.headline)
@@ -84,10 +88,13 @@ struct ClubDetailView: View {
                             }
                             .padding(20)
                             .multilineTextAlignment(.center)
+                        
                         }
                         .frame(width: 350, height: 100)
                     
                 Spacer()
+                
+                CheckedInListView(club: club)
             }
         
         }
