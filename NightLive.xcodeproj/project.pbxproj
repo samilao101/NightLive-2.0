@@ -31,6 +31,7 @@
 		222844DC27F45B7000A01AB1 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222844DB27F45B7000A01AB1 /* Extensions.swift */; };
 		222844DE27F46F3B00A01AB1 /* AlertItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222844DD27F46F3B00A01AB1 /* AlertItem.swift */; };
 		222844E027F4997A00A01AB1 /* CheckedInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222844DF27F4997A00A01AB1 /* CheckedInViewModel.swift */; };
+		222844E227F86FB800A01AB1 /* PreviewCheckedInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222844E127F86FB800A01AB1 /* PreviewCheckedInViewModel.swift */; };
 		22A3A5E227F0E76900F674FD /* CheckedInListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A3A5E127F0E76900F674FD /* CheckedInListView.swift */; };
 		22A3A5E427F0E9D500F674FD /* UserAvatarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A3A5E327F0E9D500F674FD /* UserAvatarView.swift */; };
 		22A3A5E627F0FD2700F674FD /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A3A5E527F0FD2700F674FD /* LoginView.swift */; };
@@ -60,6 +61,7 @@
 		222844DB27F45B7000A01AB1 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		222844DD27F46F3B00A01AB1 /* AlertItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertItem.swift; sourceTree = "<group>"; };
 		222844DF27F4997A00A01AB1 /* CheckedInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckedInViewModel.swift; sourceTree = "<group>"; };
+		222844E127F86FB800A01AB1 /* PreviewCheckedInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewCheckedInViewModel.swift; sourceTree = "<group>"; };
 		22A3A5E127F0E76900F674FD /* CheckedInListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckedInListView.swift; sourceTree = "<group>"; };
 		22A3A5E327F0E9D500F674FD /* UserAvatarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAvatarView.swift; sourceTree = "<group>"; };
 		22A3A5E527F0FD2700F674FD /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -139,6 +141,7 @@
 			isa = PBXGroup;
 			children = (
 				220DB90B27EC692800D3B811 /* ListViewModel.swift */,
+				222844E127F86FB800A01AB1 /* PreviewCheckedInViewModel.swift */,
 				220DB90527EC658F00D3B811 /* ListView.swift */,
 				220DB91727EF7C0200D3B811 /* CellView.swift */,
 				220DB8FC27EC64B200D3B811 /* ClubDetailView */,
@@ -298,6 +301,7 @@
 				220DB8BE27EB2A9900D3B811 /* User.swift in Sources */,
 				220DB90F27EC7C3900D3B811 /* ClubModel.swift in Sources */,
 				222844DE27F46F3B00A01AB1 /* AlertItem.swift in Sources */,
+				222844E227F86FB800A01AB1 /* PreviewCheckedInViewModel.swift in Sources */,
 				220DB8BC27EB2A5B00D3B811 /* FirebaseManager.swift in Sources */,
 				220DB91827EF7C0200D3B811 /* CellView.swift in Sources */,
 				220DB91627EF78E300D3B811 /* ClubDetailView.swift in Sources */,

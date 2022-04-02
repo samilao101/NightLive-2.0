@@ -15,7 +15,6 @@ class UserAvatarViewModel: ObservableObject {
     
     init(user: ChatUser) {
         self.user = user
-        
         getProfileImage(user: user)
     }
     
@@ -24,7 +23,6 @@ class UserAvatarViewModel: ObservableObject {
             self.downloadProfileImage(imageId: user.uid) { result in
                 switch result {
                 case .success(let image):
-                    print("image 5")
                     self.image = image
                 case .failure(_):
                     break
@@ -37,17 +35,17 @@ class UserAvatarViewModel: ObservableObject {
     
     func downloadProfileImage(imageId: String, handler: @escaping(Result<UIImage, Error>)->Void) {
 
-        print("image 1")
+     
         let logoStorage = FirebaseManager.shared.storage.reference().child("\(FirebaseConstants.profileImages)/\(imageId)/\(imageId)")
 
-        print("image 2")
+    
         logoStorage.getData(maxSize: 1 * 1024 * 1024) { data, error in
-            print("image 3")
+        
           if let error = error {
             print(error.localizedDescription)
-              print("image 3 error")
+         
           } else {
-              print("image 4")
+        
             let image = UIImage(data: data!)
             guard let newimage = image else { return }
             handler(.success(newimage))

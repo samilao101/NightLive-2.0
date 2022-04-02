@@ -47,6 +47,7 @@ struct ClubDetailView: View {
                         }
                 
                 if vm.chatUser != nil {
+                    HStack{
                     Button {
                             
                         if club.id == vm.currentClub?.id  {
@@ -63,6 +64,18 @@ struct ClubDetailView: View {
                             .background(club.id == vm.currentClub?.id ? Color.yellow: Color.green)
                             .cornerRadius(12)
                             .foregroundColor(.black)
+                    }
+                        Button {
+                          
+                            
+                            
+                        } label: {
+                            Image(systemName: "text.bubble.fill")
+                                .padding()
+                                .background(club.id == vm.currentClub?.id ? Color.yellow: Color.green)
+                                .cornerRadius(12)
+                                .foregroundColor(.black)
+                        }
                     }
                 }
               

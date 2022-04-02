@@ -20,7 +20,7 @@ struct CheckedInListView: View {
     ]
     
     init(club: ClubModel) {
-        _vm = StateObject.init(wrappedValue: CheckedInViewModel(club: club))
+        _vm = StateObject.init(wrappedValue: CheckedInViewModel(club: club, numberCheckedIn: club.checkedIN ?? 0))
     }
     
     var body: some View {

@@ -1,36 +1,38 @@
 //
-//  CheckedInViewModel.swift
+//  PreviewCheckedInViewModel.swift
 //  NightLive
 //
-//  Created by Sam Santos on 3/30/22.
+//  Created by Sam Santos on 4/2/22.
 //
 
 import Foundation
 import SwiftUI
 
-class CheckedInViewModel: ObservableObject {
+class PreviewCheckedInViewModel: ObservableObject {
     
     let club: ClubModel
     
     @Published var usersCheckedIn = [ChatUser]()
     
-    var numberCheckedIn: Int = 0
+   
     var limited: Bool = false
     
     
-    init(club: ClubModel, numberCheckedIn: Int ) {
+    init(club: ClubModel ) {
         self.club = club
-        self.numberCheckedIn = numberCheckedIn
         getCheckedInUsers(club: club)
     }
     
     func getCheckedInUsers(club: ClubModel) {
-        
-        FirebaseManager.shared.firestore.collection(FirebaseConstants.locations).document(club.id).collection(FirebaseConstants.checkedInUsers).addSnapshotListener { querySnapShot, error in
+        usersCheckedIn = [ChatUser]()
+        FirebaseManager.shared.firestore.collection(FirebaseConstants.locations).document(club.id).collection(FirebaseConstants.checkedInUsers).limit(to: 3).addSnapshotListener { querySnapShot, error in
+            
             
                 if let error = error {
                     print(error.localizedDescription)
                 }
+            
+            
             
             querySnapShot?.documentChanges.forEach({ change in
                 
@@ -56,8 +58,16 @@ class CheckedInViewModel: ObservableObject {
                         
                     }
                 }
+                
+                
+              
             })
+            
+            
         }
+
+    
+    
     }
     
     

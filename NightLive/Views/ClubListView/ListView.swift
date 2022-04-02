@@ -18,7 +18,7 @@ struct ListView: View {
                 NavigationLink {
                     ClubDetailView(club: club)
                 } label: {
-                    CellView(club: club)
+                    CellView(club: club, vm: PreviewCheckedInViewModel(club: club))
                 }
             }
         }
