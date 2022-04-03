@@ -163,6 +163,7 @@
 				220DB91527EF78E300D3B811 /* ClubDetailView.swift */,
 				222844DF27F4997A00A01AB1 /* CheckedInViewModel.swift */,
 				22A3A5E127F0E76900F674FD /* CheckedInListView.swift */,
+				222844E927FA112A00A01AB1 /* User Chat View */,
 			);
 			path = ClubDetailView;
 			sourceTree = "<group>";
@@ -211,6 +212,13 @@
 				222844DB27F45B7000A01AB1 /* Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		222844E927FA112A00A01AB1 /* User Chat View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "User Chat View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
